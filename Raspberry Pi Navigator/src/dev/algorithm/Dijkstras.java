@@ -73,10 +73,6 @@ public class Dijkstras {
 				if (d < n.getDistance() || n.getDistance() == Integer.MAX_VALUE) {
 					n.setDistance(d);
 					n.setPrevious_node(node);
-//					if (n.getClassification() == Node.end) {
-//						end = n;
-//						return;
-//					}
 				}
 			}
 		}
