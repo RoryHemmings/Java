@@ -9,6 +9,7 @@ import dev.Main;
 public class Node implements Comparable<Node> {
 
 	private int x, y, x_pos, y_pos;
+	private boolean diag;
 	private int distance = -1;
 	private boolean in_path = false;
 	private int classification = 0;
@@ -25,7 +26,8 @@ public class Node implements Comparable<Node> {
 	private ArrayList<Node> neighbors = new ArrayList<Node>();
 	private Node previous_node = null;
 
-	public Node(int x_pos, int y_pos, int x, int y, int size, int classification, int distance, Main main) {
+	public Node(int x_pos, int y_pos, int x, int y, int size, int classification, int distance, boolean diag,
+			Main main) {
 		this.x = x;
 		this.y = y;
 		this.x_pos = x_pos;
@@ -33,14 +35,13 @@ public class Node implements Comparable<Node> {
 		this.size = size;
 		this.classification = classification;
 		this.distance = distance;
+		this.diag = diag;
 		this.main = main;
 
 		bounds = new int[] { x, x + size, y, y + size };
 	}
 
 	public void render(Graphics g) {
-		// && !(classification == start) && !(classification == wall) &&
-		// !(classification == end)
 		if (in_path)
 			g.setColor(Color.ORANGE);
 		else if (!in_path) {
@@ -62,18 +63,22 @@ public class Node implements Comparable<Node> {
 	}
 
 	public void init_neighbors() {
-//		if (!(x_pos - 1 < 0))
-//			neighbors.add(main.getNodes()[x_pos - 1][y_pos]);
-//		if (!(x_pos + 1 >= Main.getDensity()))
-//			neighbors.add(main.getNodes()[x_pos + 1][y_pos]);
-//		if (!(y_pos - 1 < 0))
-//			neighbors.add(main.getNodes()[x_pos][y_pos - 1]);
-//		if (!(y_pos + 1 >= Main.getDensity()))
-//			neighbors.add(main.getNodes()[x_pos][y_pos + 1]);
-		for (int x = -1;x <= 1;x++) {
-			for (int y = -1;y <= 1;y++) {
-				if (x_pos + x >= 0 && x_pos + x < Main.getDensity() && y_pos + y >= 0 && y_pos + y < Main.getDensity())
-					neighbors.add(main.getNodes()[x_pos + x][y_pos + y]);
+		if (!diag) {
+			if (!(x_pos - 1 < 0))
+				neighbors.add(main.getNodes()[x_pos - 1][y_pos]);
+			if (!(x_pos + 1 >= Main.getDensity()))
+				neighbors.add(main.getNodes()[x_pos + 1][y_pos]);
+			if (!(y_pos - 1 < 0))
+				neighbors.add(main.getNodes()[x_pos][y_pos - 1]);
+			if (!(y_pos + 1 >= Main.getDensity()))
+				neighbors.add(main.getNodes()[x_pos][y_pos + 1]);
+		} else {
+			for (int x = -1; x <= 1; x++) {
+				for (int y = -1; y <= 1; y++) {
+					if (x_pos + x >= 0 && x_pos + x < Main.getDensity() && y_pos + y >= 0
+							&& y_pos + y < Main.getDensity())
+						neighbors.add(main.getNodes()[x_pos + x][y_pos + y]);
+				}
 			}
 		}
 	}
@@ -98,7 +103,7 @@ public class Node implements Comparable<Node> {
 		}
 		return 0;
 	}
-	
+
 	public int[] getBounds() {
 		return bounds;
 	}
