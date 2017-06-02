@@ -18,9 +18,9 @@ public class Launcher {
 //		e[1]= Integer.parseInt(end.split("\\,")[1]);
 		
 		int[] s = new int[]{0, 0};
-		int[] e = new int[]{9, 9};
+		int[] e = new int[]{19, 19};
 		
-		Main m = new Main(900, 600, s, e);
+		Main m = new Main(600, 600, s);
 		m.start();
 	}
 	
