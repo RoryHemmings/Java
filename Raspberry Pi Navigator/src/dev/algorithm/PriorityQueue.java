@@ -13,5 +13,5 @@ public class PriorityQueue {
 	public ArrayList<Node> getQueue() {
 		return Queue;
 	}
-		
+	
 }
