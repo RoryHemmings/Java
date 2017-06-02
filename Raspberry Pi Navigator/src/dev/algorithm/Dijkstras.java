@@ -60,8 +60,7 @@ public class Dijkstras {
 			if (temp.getPrevious_node() == null)
 				break;
 		}
-		
-		System.out.println("Finished");
+
 		return shortest_path;
 	}
 

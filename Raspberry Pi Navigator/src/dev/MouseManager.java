@@ -7,8 +7,6 @@ import java.awt.event.MouseMotionListener;
 public class MouseManager implements MouseListener, MouseMotionListener {
 	
 	private int mouseX = 0, mouseY = 0;
-	private boolean mousePressed = false;
-	private boolean valid = true;
 	
 	private Main main;
 	
@@ -21,20 +19,10 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 	}
 	
 	@Override
-	public void mousePressed(MouseEvent e) {
-//		if(valid) {
-//			mousePressed = true;
-//			valid = false;
-//		}
-//		else
-//			mousePressed = false;
-	}
+	public void mousePressed(MouseEvent e) {}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-//		mousePressed = false;
-//		valid = true;
-	}
+	public void mouseReleased(MouseEvent e) {}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -57,9 +45,5 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 	public int getMouseY() {
 		return mouseY;
 	}
-
-//	public boolean isMousePressed() {
-//		return mousePressed;
-//	}
 
 }
